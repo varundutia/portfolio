@@ -1,10 +1,10 @@
-import { Button } from 'react-bootstrap';
-import { Form, FormControl, Nav, NavDropdown } from 'react-bootstrap';
-import Navbar from 'react-bootstrap/Navbar';
+
+import './App.css';
 
 function App() {
   return (
     <div className="App">
+          Learn React
     </div>
   );
 }
