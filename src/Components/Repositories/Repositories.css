@@ -1,0 +1,44 @@
+.column {
+    float: left;
+    width: 33.33%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    
+  }
+  @media screen and (max-width: 800px) {
+    .column {
+        float: left;
+        width: 50%;
+        transition: all 0.5s ease;
+      }
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        transition: all 0.5s ease;
+      }
+
+  }
+  @media screen and (max-width: 600px) {
+    .column {
+        float: left;
+        width: 100%;
+        transition: all 0.5s ease;
+      }
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        transition: all 0.5s ease;
+      }
+
+  }
+  #projects{
+      background-color: #dde2eb;
+      padding: 50px;
+  }

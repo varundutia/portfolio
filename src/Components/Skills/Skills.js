@@ -10,7 +10,7 @@ const Skills = () => {
                 <div className="bar1">
                     <ProgressLine
                         label="C++"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "70%",
@@ -20,7 +20,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="Java"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "60%",
@@ -30,7 +30,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="Python"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "60%",
@@ -40,7 +40,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="Android"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "80%",
@@ -50,7 +50,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="React"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "50%",
@@ -62,7 +62,7 @@ const Skills = () => {
                 <div className="bar2">
                     <ProgressLine
                         label="Flask"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "70%",
@@ -72,7 +72,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label=".Net"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "60%",
@@ -82,7 +82,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="HTML"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "70%",
@@ -92,7 +92,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="CSS"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "60%",
@@ -102,7 +102,7 @@ const Skills = () => {
                     />
                     <ProgressLine
                         label="NodeJS"
-                        backgroundColor="#00d4ff"
+                        backgroundColor="#ffff"
                         visualParts={[
                             {
                                 percentage: "70%",

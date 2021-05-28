@@ -1,42 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import "./Repositories.css";
-import ApiService from '../../ApiService';
-import Typical from 'react-typical';
+import axios from 'axios';
+import Card from '../Card/Card';
 
 const Repositories = () => {
-    const apiService = new ApiService();
     const [repos, setRepos] = useState([]);
-    let url = "https://cors-anywhere.herokuapp.com/https://api.github.com/users/varundutia/starred";
+    let url = "https://api.github.com/users/varundutia/starred";
 
     useEffect(() => {
-        apiService.get(url).then((result) => {
-            setRepos(result);
-        })
+        axios.get(url)
+            .then(res => {
+                const rep = res.data;
+                setRepos(rep);
+            })
     }, []);
 
     return (
-        <div>
-            <ul>
+        <section id="projects">
+            <h1>My Projects</h1>
+            <div className="row">
                 {repos.map((item, index) => {
                     return (
-                        <li>{item.name}</li>
+                        <div className="column">
+                            <Card title={item.name} description={item.description} id={item.owner.id} url={item.html_url} width="24em"/>
+                        </div>
                     );
                 })}
-                <li>abc</li>
-                <li>abc</li>
-                <li>abc</li>
-                <li>abc</li>
-                <li>abc</li>
-                <li>abc</li>
-                <li>abc</li>
-                <li>abc</li>
-            </ul>
-            <Typical
-                steps={['Hello', 1000, 'Hello world!', 500]}
-                loop={Infinity}
-                wrapper="p"
-            />
-        </div>
+            </div>
+        </section>
     );
 }
 export default Repositories;

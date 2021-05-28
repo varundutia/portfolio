@@ -7,6 +7,7 @@
 #skills{
     justify-content: center;
     align-content: center;
+    margin: 50px;
 }
 .bar1{
     width: 50%;
