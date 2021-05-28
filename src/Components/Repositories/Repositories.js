@@ -22,7 +22,7 @@ const Repositories = () => {
                 {repos.map((item, index) => {
                     return (
                         <div className="column">
-                            <Card title={item.name} description={item.description} id={item.owner.id} url={item.html_url} width="24em"/>
+                            <Card title={item.name} description={item.description} id={item.owner.id} url={item.html_url} width="100%"/>
                         </div>
                     );
                 })}
