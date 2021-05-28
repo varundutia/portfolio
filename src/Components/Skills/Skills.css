@@ -28,7 +28,7 @@ h1{
     }
     .bar1{
         margin: 10px;
-        width: 100%;
+        width: 80vw;
         transition: all 0.5s ease ease-in-out;
     }
     .bar2{
