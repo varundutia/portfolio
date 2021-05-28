@@ -1,0 +1,12 @@
+
+.about-main {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  background-color: #dde2eb;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+

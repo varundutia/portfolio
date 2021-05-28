@@ -1,0 +1,31 @@
+.footer-main{
+    position: relative;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,19,23,1) 35%, rgba(16,46,55,1) 100%, rgba(0,212,255,1) 100%);
+    height: auto;
+    color: #ffff;
+    bottom: 0;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-content{
+    margin: 20px;
+    align-items: center;
+}
+.footer-icons{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon{
+    padding: 10px;
+}
+.icon:hover{
+    padding: 10px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(63,63,76,1) 0%, rgba(28,187,206,1) 100%, rgba(0,212,255,1) 100%);
+}
+a { 
+    color: inherit; 
+} 

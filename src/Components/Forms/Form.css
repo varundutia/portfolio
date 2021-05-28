@@ -1,0 +1,27 @@
+.contact-main{
+    position: relative;
+  background-color: #dde2eb;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  margin: 10px;
+  padding: 10px;
+}
+.contact{
+    background-color: #dde2eb;
+}
+h1{
+    padding: 10px;
+    margin: 10px;
+}
+input{
+    width: 200px;
+    height: 25px;
+}
+textarea{
+    width: 200px;
+    height: 25px;
+}
+button{
+
+}

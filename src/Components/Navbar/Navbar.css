@@ -75,12 +75,12 @@
     .nav-links:hover{
         background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(63,63,76,1) 0%, rgba(28,187,206,1) 100%, rgba(0,212,255,1) 100%);
         border-radius: 0;
-    }
+    } 
     .navbar-logo{
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translate(25%,50%);
+        color: #ffff;
+        justify-self: start;
+        margin-left: 20px;
+        cursor: pointer;
     }
     .menu-icon{
         display: block;

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {MenuItems} from "./MenuItems";
 import "./Navbar.css";
 
@@ -16,7 +16,7 @@ const Navbar = () =>{
                 {MenuItems.map((item,index)=>{
                     return(
                         <li>
-                            <a className = {item.cName}href={item.url}>
+                            <a className = {item.cName} href={item.url}>
                                 {item.title}
                             </a>
                         </li>

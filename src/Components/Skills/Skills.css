@@ -1,0 +1,39 @@
+.skill-main{
+    display:flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+#skills{
+    justify-content: center;
+    align-content: center;
+}
+.bar1{
+    width: 50%;
+    margin: 10px;
+    justify-content: center;
+}
+.bar2{
+    width: 50%;
+    margin: 10px;
+    justify-content: center;
+} 
+h1{
+    text-align: center;
+    margin: 100px;
+}
+@media screen and (max-width: 600px) {
+    .skill-main{
+        display: grid;
+    }
+    .bar1{
+        margin: 10px;
+        width: 100%;
+        transition: all 0.5s ease ease-in-out;
+    }
+    .bar2{
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+    } 
+
+}
