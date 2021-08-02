@@ -1,5 +1,10 @@
 export const IndustryItems = [
     {
+        title: "Project Engineer - Wipro",
+        description: "Wipro Limited is an Indian multinational corporation that provides IT, consulting and business process service.",
+        skills: "Training in SAP ABAP"
+    },
+    {
         title: "Technology Founding Member - Metta Studio",
         description: "Metta Studio is a Yoga / Meditation startup where teachers can book slots and teach students. Health Cafe and Sound Station is also included in the Mobile Application",
         skills: "Android, React-Native, Nodejs, MySQL, AWS"
