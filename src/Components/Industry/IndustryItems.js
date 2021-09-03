@@ -2,7 +2,7 @@ export const IndustryItems = [
     {
         title: "Project Engineer - Wipro",
         description: "Wipro Limited is an Indian multinational corporation that provides IT, consulting and business process service.",
-        skills: "Training in SAP ABAP"
+        skills: "SAP SD functional consultant"
     },
     {
         title: "Technology Founding Member - Metta Studio",
