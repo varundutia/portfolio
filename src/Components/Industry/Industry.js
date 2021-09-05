@@ -10,7 +10,9 @@ const Industry = () => {
             <div>
                 {IndustryItems.map((item, index) => {
                     return (
-                        <Card title={item.title} description={item.description} id={item.skills} width="90%" />
+                        <a href={item.link}>
+                            <Card title={item.title} description={item.description} id={item.skills} width="90%" />
+                        </a>
                     )
                 })}
             </div>
