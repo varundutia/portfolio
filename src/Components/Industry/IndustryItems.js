@@ -1,5 +1,11 @@
 export const IndustryItems = [
     {
+        title: "Software Developer - DevaSeva - Donatekart",
+        description: "Devaseva is an online portal that connects the divine to the devotees.",
+        skills: "Full-Stack (NodeJS and NextJS), Flutter",
+        link: 'https://devaseva.com/'
+    },
+    {
         title: "Project Engineer - Wipro",
         description: "Wipro Limited is an Indian multinational corporation that provides IT, consulting and business process service.",
         skills: "SAP SD functional consultant",
