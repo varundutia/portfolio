@@ -6,7 +6,7 @@ const Footer = () => {
             <footer className="footer-main">
                 <div className="footer-content">
                     <h2>Contact Me</h2>
-                8220618104 | <a href="mailto:varundutia.h@gmail.com">varundutia.h@gmail.com</a>
+                <a href="tel:+353899466706">+353899466706</a> | <a href="mailto:varundutia.hameer@gmail.com">varundutia.hameer@gmail.com</a>
                     <div className="footer-icons">
                         <a href="https://www.instagram.com/varundutia_/"><i className="fab fa-instagram icon"></i></a>
                         <a href="https://github.com/varundutia"><i className="fab fa-github icon"></i></a>
