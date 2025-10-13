@@ -19,7 +19,7 @@ const Repositories = () => {
     return (
         <section id="projects" className="about-info">
             <span className="heading">My Projects</span>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{paddingInline: "10px"}}>
                 {repos.map((item, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                         <Card

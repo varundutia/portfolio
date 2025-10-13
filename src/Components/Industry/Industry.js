@@ -16,7 +16,7 @@ const Industry = () => {
     <section id="experience" className="about-info">
       <span className="heading">Experience</span>
       {isMobile ? (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%', padding: '0 16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%', padding: '15px' }}>
           {IndustryItems.map((item, index) => (
             <a
               key={index}
