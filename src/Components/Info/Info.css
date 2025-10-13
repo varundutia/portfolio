@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .heading {
     margin-left: 5vw;
     font-size: 60px;
@@ -16,10 +21,14 @@
 
 .about-info {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 50px;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin-top: 20vh;
+    text-align: center;
 }
 
 .about-content {
@@ -50,7 +59,7 @@
     align-items: center;
     text-align: center;
     gap: 30px;
-    margin-top: 5vh;
+    margin-top: 15vh;
   }
 
   .about-content {
@@ -65,7 +74,8 @@
 
 @media (max-width: 768px) {
   .heading {
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 35px;
     text-align: center;
   }
@@ -75,35 +85,45 @@
     align-items: center;
     text-align: center;
     gap: 20px;
+    margin-top: 10vh;
   }
 
   .about-content {
     font-size: 18px;
-    margin: 0 4vw;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .skills-container {
     gap: 8px;
     justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .heading {
+    margin-left: auto;
+    margin-right: auto;
     font-size: 28px;
     text-align: center;
   }
 
   .about-info {
-    margin-top: 3vh;
+    margin-top: 8vh;
   }
 
   .about-content {
     font-size: 16px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .skills-container {
     gap: 6px;
     justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
