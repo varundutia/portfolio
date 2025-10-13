@@ -6,12 +6,13 @@ import Navbar from "./Components/Navbar/Navbar";
 import Skills from './Components/Skills/Skills';
 import Repositories from "./Components/Repositories/Repositories";
 import Industry from './Components/Industry/Industry';
+import Info from './Components/Info/Info';
 function App() {
   return (
     <div className="App">
           <Navbar/>
           <About/>
-          <Skills/>
+          <Info />
           <Repositories/>
           <Industry/>
           <Footer/>
