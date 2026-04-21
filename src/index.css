@@ -1,35 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap");
 
 :root {
-  --font-sans: "Roboto Mono", monospace;
-
-  --font-mono: "Roboto Mono", monospace;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 }
 
-.hero-heading {
-  font-size: xx-large;
-  font-family: "Roboto Mono", sans-serif;
-  font-weight: 500;
+* {
+  box-sizing: border-box;
 }
 
-h1, h2, h3, .hero-heading {
-  font-family: "Roboto Mono", sans-serif;
-  font-weight: 500;
-}
-
-h4, h5, h6, .hero-heading {
-  font-family: "Roboto Mono", sans-serif;
-  font-weight: 400;
-}
-
-p, span, .hero-subtext {
-  font-family: "Roboto Mono", monospace;
-  font-weight: 200;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
+  background: #06091a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
