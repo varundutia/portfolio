@@ -3,15 +3,10 @@ import { Download } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ApiError, documentFileUrl, listDocuments } from "@/lib/api";
+import { findResumeDocument } from "@/lib/documents";
 import type { PortfolioDocument } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Resume" };
-
-function findResume(documents: PortfolioDocument[]): PortfolioDocument | undefined {
-  return documents.find(
-    (d) => d.status === "ready" && /resume|cv/i.test(`${d.title} ${d.original_filename}`),
-  );
-}
 
 export default async function ResumePage() {
   let documents: PortfolioDocument[] = [];
@@ -22,7 +17,7 @@ export default async function ResumePage() {
     error = err instanceof ApiError ? err.message : "Could not load the resume right now.";
   }
 
-  const resume = findResume(documents);
+  const resume = findResumeDocument(documents);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">

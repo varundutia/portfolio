@@ -1,23 +1,30 @@
 from datetime import UTC, datetime, timedelta
 
+import bcrypt
 import jwt
-from passlib.context import CryptContext
 
 from app.core.config import get_settings
 
-_pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 ADMIN_COOKIE_NAME = "portfolio_admin_session"
+
+# bcrypt's own C implementation truncates at 72 bytes silently in older versions but raises
+# in 4.x+; encode explicitly and truncate ourselves so behavior is consistent either way.
+_MAX_PASSWORD_BYTES = 72
 
 
 def hash_password(plain_password: str) -> str:
-    return _pwd_context.hash(plain_password)
+    encoded = plain_password.encode("utf-8")[:_MAX_PASSWORD_BYTES]
+    return bcrypt.hashpw(encoded, bcrypt.gensalt()).decode("utf-8")
 
 
 def verify_password(plain_password: str, password_hash: str) -> bool:
     if not password_hash:
         return False
-    return _pwd_context.verify(plain_password, password_hash)
+    encoded = plain_password.encode("utf-8")[:_MAX_PASSWORD_BYTES]
+    try:
+        return bcrypt.checkpw(encoded, password_hash.encode("utf-8"))
+    except ValueError:
+        return False
 
 
 def create_admin_token() -> str:

@@ -10,14 +10,13 @@ export const siteConfig = {
   githubUsername: "varundutia",
 };
 
+/** Anchors on the single-page portfolio (`/`). Using `/#id` rather than `#id` so the links
+ * still work correctly from other routes (e.g. /github/[repo], /admin). */
 export const primaryNav = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/ask", label: "Ask My Portfolio" },
-  { href: "/search", label: "Search" },
-  { href: "/github", label: "GitHub Explorer" },
-  { href: "/about", label: "About" },
-  { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#github", label: "GitHub" },
+  { href: "/#ask", label: "Ask AI" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
