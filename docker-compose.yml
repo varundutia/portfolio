@@ -1,0 +1,36 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_DB: portfolio
+    ports:
+      - "5432:5432"
+    volumes:
+      - portfolio_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://portfolio:portfolio@db:5432/portfolio
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+volumes:
+  portfolio_pg_data:
