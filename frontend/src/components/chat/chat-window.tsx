@@ -59,7 +59,7 @@ export function ChatWindow() {
       <div className="space-y-4">
         {exchanges.map((exchange) => (
           <div key={exchange.id} className="space-y-2">
-            <div className="ml-auto w-fit max-w-[85%] rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground">
+            <div className="ml-auto w-fit max-w-[85%] break-words rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground">
               {exchange.question}
             </div>
 
@@ -99,7 +99,7 @@ export function ChatWindow() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about experience, projects, or a specific technology…"
-          className="flex-1 bg-transparent px-2 py-1.5 text-sm outline-none placeholder:text-muted-foreground"
+          className="min-w-0 flex-1 bg-transparent px-2 py-1.5 text-sm outline-none placeholder:text-muted-foreground"
           aria-label="Ask a question about Varun's portfolio"
         />
         <Button type="submit" size="icon" disabled={!input.trim()} aria-label="Send question">

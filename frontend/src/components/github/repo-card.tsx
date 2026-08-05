@@ -30,7 +30,7 @@ export function RepoCard({ repo }: { repo: Repository }) {
     <Card>
       <CardHeader className="px-4">
         <div className="flex items-start justify-between gap-2">
-          <Link href={`/github/${repo.name}`} className="font-medium hover:underline">
+          <Link href={`/github/${repo.name}`} className="min-w-0 break-words font-medium hover:underline">
             {repo.name}
           </Link>
           <Badge variant="secondary">{CATEGORY_LABEL[repo.category] ?? repo.category}</Badge>

@@ -30,7 +30,7 @@ export function EvidenceCard({
       <div className="flex flex-wrap items-center gap-2">
         {index != null && <span className="font-mono text-xs text-muted-foreground">[{index}]</span>}
         <SourceBadge sourceType={sourceType} />
-        <span className="font-medium">{sourceTitle}</span>
+        <span className="min-w-0 break-words font-medium">{sourceTitle}</span>
         {location && <span className="text-xs text-muted-foreground">— {location}</span>}
         {sourceUrl && (
           <Link
