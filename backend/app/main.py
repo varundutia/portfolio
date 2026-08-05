@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import (
     routes_ask,
-    routes_auth,
     routes_documents,
     routes_github,
     routes_health,
@@ -24,7 +23,8 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_origin],
+    allow_origins=settings.cors_origins,
+    allow_origin_regex=settings.frontend_origin_regex,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,7 +33,6 @@ app.add_middleware(
 register_error_handlers(app)
 
 app.include_router(routes_health.router)
-app.include_router(routes_auth.router)
 app.include_router(routes_documents.router)
 app.include_router(routes_github.router)
 app.include_router(routes_search.router)

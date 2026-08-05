@@ -46,11 +46,11 @@ export function ChatWindow() {
   return (
     <div className="space-y-6">
       {exchanges.length === 0 && (
-        <div className="space-y-3 rounded-xl border border-dashed border-border/70 p-4">
+        <div className="space-y-3 rounded-lg border border-dashed border-border/70 p-4">
           <p className="text-sm text-muted-foreground">
-            Ask about experience, projects, skills, or specific technologies. Answers are grounded
-            only in uploaded documents and selected GitHub repositories, with citations you can
-            verify.
+            Ask about experience, projects, backend work, payments, authentication, skills, or
+            specific technologies. Answers use uploaded documents and selected GitHub repositories
+            when evidence is available.
           </p>
           <SuggestedQuestions onSelect={(q) => void runQuestion(q)} />
         </div>
@@ -59,19 +59,19 @@ export function ChatWindow() {
       <div className="space-y-4">
         {exchanges.map((exchange) => (
           <div key={exchange.id} className="space-y-2">
-            <div className="ml-auto w-fit max-w-[85%] rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground">
+            <div className="ml-auto w-fit max-w-[85%] rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground">
               {exchange.question}
             </div>
 
             {exchange.loading && (
-              <div className="space-y-2 rounded-xl border border-border/60 bg-card p-4">
+              <div className="space-y-2 rounded-lg border border-border/60 bg-card p-4">
                 <Skeleton className="h-4 w-3/4" />
                 <Skeleton className="h-4 w-1/2" />
               </div>
             )}
 
             {exchange.error && (
-              <div className="flex items-center justify-between gap-3 rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+              <div className="flex items-center justify-between gap-3 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
                 <span>{exchange.error}</span>
                 <Button
                   size="sm"
@@ -93,7 +93,7 @@ export function ChatWindow() {
           e.preventDefault();
           void runQuestion(input);
         }}
-        className="flex items-center gap-2 rounded-xl border border-border/70 bg-card p-2"
+        className="flex items-center gap-2 rounded-lg border border-border/70 bg-card p-2"
       >
         <input
           value={input}

@@ -42,12 +42,12 @@ AI providers are swappable via env vars, not hardcoded:
 - **About** — evidence-sourced summary snippet + code composition, no self-rated skills.
 - **Resume** — serves the actual uploaded resume file (download endpoint), not a hardcoded page.
 - **Contact** — link routing only (email/GitHub/LinkedIn), explicitly not a claims source.
-- **Admin** (`/admin`, cookie-gated, `noindex`) — document upload/list/delete, GitHub sync
+- **Admin** (`/admin`, noindex) — document upload/list/delete, GitHub sync
   trigger, per-repository curation (category, featured, RAG-indexed toggle).
 
 ## Backend modules
 
-- `app/core` — env-driven settings, JWT/bcrypt admin auth, centralized error handling (no stack
+- `app/core` — env-driven settings and centralized error handling (no stack
   traces leaked to clients)
 - `app/models` — `Document`/`DocumentVersion`, `Repository`/`RepositoryFile`, `Source` (the
   unifying citation pointer), `Chunk` (pgvector + tsvector), `Project` + link tables, `QueryLog`
@@ -141,8 +141,7 @@ site had already been deleted (confirmed intentional) before this session began.
   `docker compose up -d db && cd backend && TEST_DATABASE_URL=postgresql+psycopg://portfolio:portfolio@localhost:5432/portfolio_test pytest`.
 - **No document ingestion or GitHub sync has actually been run.** The seed PDFs discussed in
   planning were never ingested — do this yourself via the admin UI after standing up the stack
-  (`docker compose up`, `alembic upgrade head`, sign in at `/admin/login` with a bcrypt hash
-  in `ADMIN_PASSWORD_HASH`, upload documents, trigger a GitHub sync, then curate repository
+  (`docker compose up`, `alembic upgrade head`, open `/admin`, upload documents, trigger a GitHub sync, then curate repository
   categories/featured flags — the Projects/GitHub Explorer/Home pages stay empty until you do).
 - **Nothing has been deployed.** Vercel/Render/Neon configs are prepared but require your own
   accounts/credentials to actually provision.

@@ -128,3 +128,10 @@ export interface SyncResult {
   documentation_files_unchanged: number;
   errors: string[];
 }
+
+export interface HealthStatus {
+  status: "ok" | "degraded" | string;
+  database: boolean;
+  embedding_provider: string;
+  llm_provider: string;
+}

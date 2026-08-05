@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { ChevronDown, ShieldAlert } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { EvidenceCard } from "@/components/evidence/evidence-card";
 import type { AskResponse } from "@/lib/types";
@@ -22,7 +24,21 @@ export function AnswerMessage({ response }: { response: AskResponse }) {
         </div>
       )}
 
-      <p className="text-sm leading-relaxed whitespace-pre-wrap">{response.answer}</p>
+      <div className="prose prose-sm max-w-none dark:prose-invert prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:font-semibold">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            a: ({ href, children }) => (
+              <a href={href} target="_blank" rel="noreferrer">
+                {children}
+              </a>
+            ),
+            img: () => null,
+          }}
+        >
+          {response.answer}
+        </ReactMarkdown>
+      </div>
 
       {response.citations.length > 0 && (
         <div className="space-y-2">

@@ -1,22 +1,23 @@
-/** Contact/link routing only — not professional claims, so it's fine to configure here
- * rather than sourcing from ingested documents. What Varun has done still comes only from
- * documents and GitHub. */
 export const siteConfig = {
-  name: "Varun Dutia",
-  tagline: "Software Engineer — backend, web, mobile, and AI-powered systems",
-  email: "varundutia.hameer@gmail.com",
+  name: "Varun Hameer Dutia",
+  shortName: "Varun Dutia",
+  tagline:
+    "Software Engineer with strong backend and product engineering expertise across payments, microservices, mobile, web, cloud, and internal platforms.",
+  location: "Dublin, Ireland",
+  education: "MSc Computer Science, University College Dublin",
+  educationDates: "September 2025 to September 2026",
+  experience: "4+ years of software engineering experience",
+  email: "varundutia.h@gmail.com",
   github: "https://github.com/varundutia",
   linkedin: "https://linkedin.com/in/varun-dutia",
   githubUsername: "varundutia",
 };
 
-/** Anchors on the single-page portfolio (`/`). Using `/#id` rather than `#id` so the links
- * still work correctly from other routes (e.g. /github/[repo], /admin). */
 export const primaryNav = [
-  { href: "/#about", label: "About" },
-  { href: "/#projects", label: "Projects" },
+  { href: "/#home", label: "Home" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#github", label: "GitHub" },
-  { href: "/#ask", label: "Ask AI" },
+  { href: "/#work", label: "Work" },
+  { href: "/#capabilities", label: "Capabilities" },
+  { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ] as const;

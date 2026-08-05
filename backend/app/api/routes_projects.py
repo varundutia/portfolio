@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session, joinedload
 
-from app.api.deps import get_db, require_admin
+from app.api.deps import get_db
 from app.core.errors import DomainError
 from app.models.project import Project
 from app.models.repository import Repository
@@ -33,7 +33,7 @@ def get_project(slug: str, db: Session = Depends(get_db)) -> Project:
     return project
 
 
-@router.post("", response_model=ProjectOut, dependencies=[Depends(require_admin)])
+@router.post("", response_model=ProjectOut)
 def create_project(payload: ProjectCreate, db: Session = Depends(get_db)) -> Project:
     existing = db.query(Project).filter(Project.slug == payload.slug).first()
     if existing is not None:

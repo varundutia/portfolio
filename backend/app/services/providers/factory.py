@@ -47,4 +47,12 @@ def _build_llm_provider(settings: Settings) -> LLMProvider:
         from app.services.providers.llm_openai import OpenAILLMProvider
 
         return OpenAILLMProvider(api_key=settings.openai_api_key, model=settings.openai_llm_model)
+    if provider == "gemini":
+        from app.services.providers.llm_gemini import GeminiProvider
+
+        return GeminiProvider(
+            api_key=settings.gemini_api_key,
+            model=settings.gemini_model,
+            max_output_tokens=settings.gemini_max_output_tokens,
+        )
     raise ValueError(f"Unknown LLM_PROVIDER: {settings.llm_provider}")

@@ -1,10 +1,15 @@
 services:
   - type: web
     name: portfolio-backend
-    env: docker
+    runtime: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     plan: starter
+    healthCheckPath: /health
+    disk:
+      name: portfolio-documents
+      mountPath: /app/storage
+      sizeGB: 1
     envVars:
       - key: DATABASE_URL
         sync: false
@@ -17,16 +22,16 @@ services:
       - key: EMBEDDING_DIMENSIONS
         value: "384"
       - key: LLM_PROVIDER
-        value: stub
-      - key: ANTHROPIC_API_KEY
+        value: gemini
+      - key: GEMINI_API_KEY
         sync: false
-      - key: OPENAI_API_KEY
-        sync: false
-      - key: VOYAGE_API_KEY
-        sync: false
-      - key: ADMIN_PASSWORD_HASH
-        sync: false
-      - key: JWT_SECRET
-        generateValue: true
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: GEMINI_MAX_OUTPUT_TOKENS
+        value: "512"
       - key: FRONTEND_ORIGIN
+        value: https://varundutia.live
+      - key: FRONTEND_ORIGINS
         sync: false
+      - key: STORAGE_DIR
+        value: /app/storage

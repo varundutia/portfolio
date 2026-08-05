@@ -14,7 +14,7 @@ vi.mock("@/lib/api", async () => {
 const mockAsk = vi.mocked(askPortfolio);
 
 const SAMPLE_RESPONSE: AskResponse = {
-  answer: "Varun built a payment microservice [1].",
+  answer: "Varun built a **payment microservice** [1].",
   is_generated: true,
   was_refused: false,
   citations: [
@@ -73,6 +73,7 @@ describe("ChatWindow", () => {
     await waitFor(() => {
       expect(screen.getByText(/payment microservice/i)).toBeInTheDocument();
     });
+    expect(document.querySelector("strong")?.textContent).toBe("payment microservice");
     expect(screen.getByText("Resume")).toBeInTheDocument();
   });
 

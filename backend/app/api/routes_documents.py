@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, UploadFile
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session, joinedload
 
-from app.api.deps import get_db, require_admin
+from app.api.deps import get_db
 from app.core.errors import DomainError
 from app.models.document import Document
 from app.schemas.document import DocumentOut
@@ -60,7 +60,7 @@ def download_document_file(document_id: UUID, db: Session = Depends(get_db)) -> 
     )
 
 
-@router.post("", response_model=DocumentOut, dependencies=[Depends(require_admin)])
+@router.post("", response_model=DocumentOut)
 async def upload_document(
     file: UploadFile, title: str | None = None, db: Session = Depends(get_db)
 ) -> Document:
@@ -73,7 +73,7 @@ async def upload_document(
     return document
 
 
-@router.post("/{document_id}/reindex", response_model=DocumentOut, dependencies=[Depends(require_admin)])
+@router.post("/{document_id}/reindex", response_model=DocumentOut)
 async def reindex_document(document_id: UUID, file: UploadFile, db: Session = Depends(get_db)) -> Document:
     file_bytes = await file.read()
     document = ingest_document(
@@ -87,7 +87,7 @@ async def reindex_document(document_id: UUID, file: UploadFile, db: Session = De
     return document
 
 
-@router.delete("/{document_id}", status_code=204, dependencies=[Depends(require_admin)])
+@router.delete("/{document_id}", status_code=204)
 def remove_document(document_id: UUID, db: Session = Depends(get_db)) -> None:
     delete_document(db, document_id)
     db.commit()
