@@ -1,13 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ApiError,
-  adminLogout,
   deleteDocument,
   listDocuments,
   listRepositoriesAdmin,
@@ -29,7 +27,6 @@ const CATEGORIES: RepositoryCategory[] = [
 type CurationPatch = Parameters<typeof updateRepositoryCuration>[1];
 
 export function AdminDashboard() {
-  const router = useRouter();
   const [documents, setDocuments] = useState<PortfolioDocument[]>([]);
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
@@ -44,15 +41,11 @@ export function AdminDashboard() {
       setDocuments(docs);
       setRepos(repoList);
     } catch (err) {
-      if (err instanceof ApiError && err.status === 401) {
-        router.push("/admin/login");
-        return;
-      }
       setActionError(err instanceof ApiError ? err.message : "Could not load admin data.");
     } finally {
       setLoading(false);
     }
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     // Initial admin data load on mount (also re-invoked manually after mutations below).
@@ -112,20 +105,12 @@ export function AdminDashboard() {
     }
   }
 
-  async function handleLogout() {
-    await adminLogout();
-    router.push("/admin/login");
-  }
-
   if (loading) return <p className="text-sm text-muted-foreground">Loading…</p>;
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">Admin</h1>
-        <Button variant="ghost" size="sm" onClick={() => void handleLogout()}>
-          Sign out
-        </Button>
       </div>
 
       {actionError && (

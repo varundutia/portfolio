@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import or_
 from sqlalchemy.orm import Session, joinedload
 
-from app.api.deps import get_db, require_admin
+from app.api.deps import get_db
 from app.core.config import get_settings
 from app.core.errors import DomainError
 from app.models.enums import RepositoryCategory
@@ -51,7 +51,7 @@ def get_repository(full_name: str, db: Session = Depends(get_db)) -> Repository:
     return repository
 
 
-@router.post("/sync", response_model=SyncResultOut, dependencies=[Depends(require_admin)])
+@router.post("/sync", response_model=SyncResultOut)
 def trigger_sync(db: Session = Depends(get_db)) -> SyncResultOut:
     settings = get_settings()
     result = sync_github(db, settings.github_username, settings.github_token)
@@ -59,7 +59,7 @@ def trigger_sync(db: Session = Depends(get_db)) -> SyncResultOut:
     return SyncResultOut(**result.__dict__)
 
 
-@router.get("/repositories-admin", response_model=list[RepositoryOut], dependencies=[Depends(require_admin)])
+@router.get("/repositories-admin", response_model=list[RepositoryOut])
 def list_all_repositories_admin(db: Session = Depends(get_db)) -> list[Repository]:
     return db.query(Repository).order_by(Repository.repo_pushed_at.desc()).all()
 
@@ -67,7 +67,6 @@ def list_all_repositories_admin(db: Session = Depends(get_db)) -> list[Repositor
 @router.patch(
     "/repositories/{repository_id}/curation",
     response_model=RepositoryOut,
-    dependencies=[Depends(require_admin)],
 )
 def update_curation(
     repository_id: UUID, payload: RepositoryCurationUpdate, db: Session = Depends(get_db)

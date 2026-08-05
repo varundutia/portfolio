@@ -1,5 +1,6 @@
 import type {
   AskResponse,
+  HealthStatus,
   PortfolioDocument,
   Project,
   Repository,
@@ -10,6 +11,13 @@ import type {
 } from "@/lib/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const DEFAULT_TIMEOUT_MS = 20_000;
+const RAG_TIMEOUT_MS = 60_000;
+const MUTATION_TIMEOUT_MS = 120_000;
+
+type ApiRequestInit = RequestInit & {
+  timeoutMs?: number;
+};
 
 export function documentFileUrl(documentId: string): string {
   return `${API_URL}/documents/${documentId}/file`;
@@ -24,22 +32,31 @@ export class ApiError extends Error {
   }
 }
 
-async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+async function apiFetch<T>(path: string, init?: ApiRequestInit): Promise<T> {
+  const { timeoutMs = DEFAULT_TIMEOUT_MS, ...requestInit } = init ?? {};
+  const timeoutSignal = AbortSignal.timeout(timeoutMs);
   let response: Response;
   try {
     response = await fetch(`${API_URL}${path}`, {
-      ...init,
+      ...requestInit,
       credentials: "include",
       headers: {
-        ...(init?.body && !(init.body instanceof FormData)
+        ...(requestInit.body && !(requestInit.body instanceof FormData)
           ? { "Content-Type": "application/json" }
           : {}),
-        ...init?.headers,
+        ...requestInit.headers,
       },
       cache: "no-store",
+      signal: requestInit.signal ?? timeoutSignal,
     });
-  } catch {
-    throw new ApiError(0, "Could not reach the portfolio API. It may be temporarily unavailable.");
+  } catch (err) {
+    const isTimeout =
+      err instanceof DOMException && (err.name === "TimeoutError" || err.name === "AbortError");
+    const message =
+      isTimeout
+        ? "The portfolio API is still working on that request. Please try again in a moment."
+        : "Could not reach the portfolio API. It may be temporarily unavailable.";
+    throw new ApiError(0, message);
   }
 
   if (!response.ok) {
@@ -57,12 +74,22 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+export function getHealth(): Promise<HealthStatus> {
+  return apiFetch<HealthStatus>("/health");
+}
+
 export function askPortfolio(question: string): Promise<AskResponse> {
-  return apiFetch<AskResponse>("/ask", { method: "POST", body: JSON.stringify({ question }) });
+  return apiFetch<AskResponse>("/ask", {
+    method: "POST",
+    body: JSON.stringify({ question }),
+    timeoutMs: RAG_TIMEOUT_MS,
+  });
 }
 
 export function semanticSearch(query: string): Promise<SearchResponse> {
-  return apiFetch<SearchResponse>(`/search?q=${encodeURIComponent(query)}`);
+  return apiFetch<SearchResponse>(`/search?q=${encodeURIComponent(query)}`, {
+    timeoutMs: RAG_TIMEOUT_MS,
+  });
 }
 
 export function listProjects(): Promise<Project[]> {
@@ -81,14 +108,6 @@ export function getRepository(fullNameOrName: string): Promise<RepositoryDetail>
   return apiFetch<RepositoryDetail>(`/github/repositories/${fullNameOrName}`);
 }
 
-export function adminLogin(password: string): Promise<void> {
-  return apiFetch<void>("/admin/login", { method: "POST", body: JSON.stringify({ password }) });
-}
-
-export function adminLogout(): Promise<void> {
-  return apiFetch<void>("/admin/logout", { method: "POST" });
-}
-
 export function listDocuments(): Promise<PortfolioDocument[]> {
   return apiFetch<PortfolioDocument[]>("/documents");
 }
@@ -98,7 +117,11 @@ export function uploadDocument(file: File, title?: string): Promise<PortfolioDoc
   form.append("file", file);
   if (title) form.append("title", title);
   const params = title ? `?title=${encodeURIComponent(title)}` : "";
-  return apiFetch<PortfolioDocument>(`/documents${params}`, { method: "POST", body: form });
+  return apiFetch<PortfolioDocument>(`/documents${params}`, {
+    method: "POST",
+    body: form,
+    timeoutMs: MUTATION_TIMEOUT_MS,
+  });
 }
 
 export function deleteDocument(id: string): Promise<void> {
@@ -106,7 +129,7 @@ export function deleteDocument(id: string): Promise<void> {
 }
 
 export function triggerGithubSync(): Promise<SyncResult> {
-  return apiFetch<SyncResult>("/github/sync", { method: "POST" });
+  return apiFetch<SyncResult>("/github/sync", { method: "POST", timeoutMs: MUTATION_TIMEOUT_MS });
 }
 
 export function listRepositoriesAdmin(): Promise<Repository[]> {

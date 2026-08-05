@@ -25,10 +25,15 @@ const fontMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} — Engineering Portfolio`,
+    default: `${siteConfig.shortName} - Software Engineer`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.tagline,
+  openGraph: {
+    title: `${siteConfig.shortName} - Software Engineer`,
+    description: siteConfig.tagline,
+    type: "website",
+  },
 };
 
 export default function RootLayout({

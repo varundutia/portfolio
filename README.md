@@ -36,6 +36,34 @@ cd ../frontend && npm install
 npm run dev                               # http://localhost:3000
 ```
 
+## Frontend/backend integration
+
+The frontend reads dynamic portfolio data from the existing FastAPI routes:
+
+- `GET /projects` and `GET /projects/{slug}` for curated project lists and detail pages.
+- `GET /github/repositories` and `GET /github/repositories/{full_name}` for public repository data.
+- `GET /documents` and `GET /documents/{id}/file` for resume/document-backed content.
+- `GET /search`, `POST /ask`, and `GET /health` for evidence search, chat, and API status.
+
+`NEXT_PUBLIC_API_URL` should point at the FastAPI deployment. GitHub credentials stay only in
+backend environment variables (`GITHUB_USERNAME`, `GITHUB_TOKEN`) and are used by the admin-triggered
+sync job, never by browser-side code.
+
+## Deployment
+
+Use Render for the FastAPI backend and Vercel for the Next.js frontend. The exact production
+settings and required environment variables are documented in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
+To use Gemini for generated answers while keeping model spend low, install backend requirements
+and set:
+
+```bash
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=...
+GEMINI_MODEL=gemini-3.5-flash-lite
+GEMINI_MAX_OUTPUT_TOKENS=512
+```
+
 ## Scope
 
 This build is a deliberately phased MVP. See `docs/DELIVERABLE.md` for what's implemented, what's

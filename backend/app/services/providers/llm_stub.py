@@ -3,7 +3,8 @@ from app.services.providers.llm_base import LLMProvider, LLMResponse
 NOT_CONFIGURED_MESSAGE = (
     "Generated answers are not enabled on this deployment yet — no LLM provider is "
     "configured. The evidence retrieved for your question is shown below with full "
-    "citations; once a provider is configured (ANTHROPIC_API_KEY or OPENAI_API_KEY plus "
+    "citations; once a provider is configured (ANTHROPIC_API_KEY, OPENAI_API_KEY, or "
+    "GEMINI_API_KEY plus "
     "LLM_PROVIDER), this will become a grounded, generated answer instead."
 )
 
