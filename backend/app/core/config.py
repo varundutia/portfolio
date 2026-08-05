@@ -30,7 +30,11 @@ class Settings(BaseSettings):
     gemini_max_output_tokens: int = 512
 
     frontend_origin: str = "http://localhost:3000"
-    frontend_origins: str = ""
+    frontend_origins: str = (
+        "https://varundutia.live,"
+        "https://www.varundutia.live,"
+        "https://varundutia-portfolio.vercel.app"
+    )
     frontend_origin_regex: str = r"https://.*\.vercel\.app"
 
     storage_dir: str = "./storage"
